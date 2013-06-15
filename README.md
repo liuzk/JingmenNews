@@ -16,8 +16,13 @@ JingmenNews
 **1、src目录**
 > org.common<br>
 > org.demo.test<br>
-> org.jingmen.conteng<br>
+> org.jingmen.content<br>
 > org.util<br>
+
+- org.common - 常用功能
+- org.demo.test - 测试模块
+- org.jingmen.content - 主要模块
+- org.util - 工具包
 
 **2、resources目录**
 > log4j.properties<br>
