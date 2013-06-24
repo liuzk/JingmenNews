@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<!-- 对于Oracle，URL是数据库实例名，不是数据库名 -->
+		<property name="connection.url">jdbc:oracle:thin:@localhost:1521:sshannotation</property>
+		<property name="connection.username">scott</property>
+		<property name="connection.password">123456</property>
+
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.OracleDialect</property>
+		<!--
+			将Session扔到线程里去处理，Enable Hibernate's automatic session context
+			management
+		-->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- 在控制台打印SQL语句 -->
+		<property name="show_sql">true</property>
+
+		<!-- 自动把实体类与属性映射成数据库中的表与列 -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<!--
+			<mapping resource="cn/com/entity/User.hbm.xml"/>
+		-->
+		<!-- 在Hibernate中注册User实体类,区别于上面注释掉的resource写法 -->
+		<mapping class="cn.com.entity.User" />
+
+	</session-factory>
+</hibernate-configuration>
