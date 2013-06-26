@@ -1,20 +1,25 @@
 package cn.com.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
-@javax.persistence.SequenceGenerator(name = "seq_user", sequenceName = "seq_user", initialValue = 10001, allocationSize = 1)
 @Table(name = "tb_user")
-public class User {
+public class User implements Serializable {
+
+	private static final long serialVersionUID = -978395357757314258L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")
-	private int id;
+	@GenericGenerator(name = "generator", strategy = "assigned")
+	@GeneratedValue(generator = "generator")
+	private String id;
 
 	@Column(name = "username", length = 15)
 	private String username;
@@ -22,11 +27,11 @@ public class User {
 	@Column(name = "password", length = 15)
 	private String password;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

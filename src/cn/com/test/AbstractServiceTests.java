@@ -1,58 +1,58 @@
-package cn.com.test;
-
-import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
-
-/**
- * »ùÓÚAbstractTransactionalSpringContextTestsµÄ³éÏó²âÊÔÀà
- * 
- * ¼Ì³Ğ´ËÀà£¬Ä³¸ö²âÊÔ·½·¨ĞèÒªÊÂÎï»Ø¹öÊ±£¬Ö±½ÓÔÚ·½·¨Ç°¼Ó@Rollback(true)¼´¿É
- * 
- * @author Bruce Qin 2010.10.11
- */
-public abstract class AbstractServiceTests extends
-		AbstractTransactionalDataSourceSpringContextTests {
-
-	// ÏîÄ¿classpathÂ·¾¶
-	String applicationContextFile = "classpath:applicationContext-common.xml";
-
-	/**
-	 * ÎŞ²Î¹¹Ôìº¯Êı
-	 */
-	public AbstractServiceTests() {
-		super();
-	}
-
-	/**
-	 * ÓĞ²Î¹¹Ôìº¯Êı
-	 * 
-	 * @param name
-	 */
-	public AbstractServiceTests(String name) {
-		super(name);
-	}
-
-	/**
-	 * ĞèÒª¼ÓÔØµÄÅäÖÃÎÄ¼şµØÖ·ÁĞ±í
-	 * 
-	 * @return new String[] { applicationContextFile };
-	 */
-	abstract String[] getOtherConfigs();
-
-	/**
-	 * ¸²¸ÇµÄ»ñÈ¡ÅäÖÃÎÄ¼şµØÖ·µÄ·½·¨
-	 */
-	protected String[] getConfigLocations() {
-		String[] otherConfigs = getOtherConfigs();
-		// ËùÓĞÅäÖÃÎÄ¼şÁĞ±í
-		String[] configFiles = new String[otherConfigs.length + 1];
-		configFiles[0] = applicationContextFile;
-
-		/**
-		 * public static void arraycopy(Object src, int srcPos, Object dest, int
-		 * destPos, int length) Ô´Êı×éÖĞÎ»ÖÃÔÚ srcPosµ½srcPos+length-1 Ö®¼äµÄ×é¼ş±»·Ö
-		 * ±ğ¸´ÖÆµ½Ä¿±êÊı×éÖĞµÄ destPos µ½ destPos+length-1 Î»ÖÃ¡£
-		 */
-		System.arraycopy(otherConfigs, 0, configFiles, 1, otherConfigs.length);
-		return configFiles;
-	}
-}
+//package cn.com.test;
+//
+//import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
+//
+///**
+// * åŸºäºAbstractTransactionalSpringContextTestsçš„æŠ½è±¡æµ‹è¯•ç±»
+// * 
+// * ç»§æ‰¿æ­¤ç±»ï¼ŒæŸä¸ªæµ‹è¯•æ–¹æ³•éœ€è¦äº‹ç‰©å›æ»šæ—¶ï¼Œç›´æ¥åœ¨æ–¹æ³•å‰åŠ @Rollback(true)å³å¯
+// * 
+// * @author Bruce Qin 2010.10.11
+// */
+//public abstract class AbstractServiceTests extends
+//		AbstractTransactionalDataSourceSpringContextTests {
+//
+//	// é¡¹ç›®classpathè·¯å¾„
+//	String applicationContextFile = "classpath:applicationContext-common.xml";
+//
+//	/**
+//	 * æ— å‚æ„é€ å‡½æ•°
+//	 */
+//	public AbstractServiceTests() {
+//		super();
+//	}
+//
+//	/**
+//	 * æœ‰å‚æ„é€ å‡½æ•°
+//	 * 
+//	 * @param name
+//	 */
+//	public AbstractServiceTests(String name) {
+//		super(name);
+//	}
+//
+//	/**
+//	 * éœ€è¦åŠ è½½çš„é…ç½®æ–‡ä»¶åœ°å€åˆ—è¡¨
+//	 * 
+//	 * @return new String[] { applicationContextFile };
+//	 */
+//	abstract String[] getOtherConfigs();
+//
+//	/**
+//	 * è¦†ç›–çš„è·å–é…ç½®æ–‡ä»¶åœ°å€çš„æ–¹æ³•
+//	 */
+//	protected String[] getConfigLocations() {
+//		String[] otherConfigs = getOtherConfigs();
+//		// æ‰€æœ‰é…ç½®æ–‡ä»¶åˆ—è¡¨
+//		String[] configFiles = new String[otherConfigs.length + 1];
+//		configFiles[0] = applicationContextFile;
+//
+//		/**
+//		 * public static void arraycopy(Object src, int srcPos, Object dest, int
+//		 * destPos, int length) æºæ•°ç»„ä¸­ä½ç½®åœ¨ srcPosåˆ°srcPos+length-1 ä¹‹é—´çš„ç»„ä»¶è¢«åˆ†
+//		 * åˆ«å¤åˆ¶åˆ°ç›®æ ‡æ•°ç»„ä¸­çš„ destPos åˆ° destPos+length-1 ä½ç½®ã€‚
+//		 */
+//		System.arraycopy(otherConfigs, 0, configFiles, 1, otherConfigs.length);
+//		return configFiles;
+//	}
+// }

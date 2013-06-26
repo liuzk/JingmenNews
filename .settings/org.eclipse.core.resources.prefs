@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//WebContent/index.jsp=UTF-8
+encoding//src/cn/com=UTF-8
+encoding//src/cn/com/dao/impl/BaseDao.java=UTF-8
+encoding//src/cn/com/test/AbstractServiceTests.java=UTF-8
+encoding//src/cn/com/test/EntityTest.java=UTF-8
+encoding//src/cn/com/test/HibernateUtil.java=UTF-8
+encoding//src/cn/com/test/ServiceTest.java=UTF-8
+encoding//src/hibernate.cfg.xml\uFF08\u6574\u5408\u540E\u53EF\u5220\u9664\uFF09=UTF-8
+encoding/<project>=UTF-8
+encoding/src=gbk

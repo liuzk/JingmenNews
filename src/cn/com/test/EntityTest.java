@@ -20,7 +20,7 @@ public class EntityTest {
 	}
 
 	@Test
-	// 测试添加用户
+	// 娴嬭瘯娣诲姞鐢ㄦ埛
 	public void testSave() {
 		session.beginTransaction();
 		User user = new User();
@@ -31,7 +31,7 @@ public class EntityTest {
 	}
 
 	@Test
-	// 测试查询用户列表
+	// 娴嬭瘯鏌ヨ鐢ㄦ埛鍒楄〃
 	@SuppressWarnings("unchecked")
 	public void testQuery() {
 		session.beginTransaction();
@@ -45,7 +45,7 @@ public class EntityTest {
 	}
 //
 //	@Test
-//	// 测试查询单个用户
+//	// 娴嬭瘯鏌ヨ鍗曚釜鐢ㄦ埛
 //	public void testGet() {
 //		session.beginTransaction();
 //		User user = (User) session.get(User.class, 1);
@@ -54,7 +54,7 @@ public class EntityTest {
 //	}
 //
 //	@Test
-//	// 测试查询修改用户
+//	// 娴嬭瘯鏌ヨ淇敼鐢ㄦ埛
 //	public void testUpdate() {
 //		session.beginTransaction();
 //		User user = (User) session.load(User.class, 1);
@@ -64,7 +64,7 @@ public class EntityTest {
 //	}
 //
 //	@Test
-//	// 测试删除用户
+//	// 娴嬭瘯鍒犻櫎鐢ㄦ埛
 //	public void testDelete() {
 //		session.beginTransaction();
 //		session.delete(session.load(User.class, 1));

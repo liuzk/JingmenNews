@@ -11,10 +11,10 @@ public class HibernateUtil {
 
 	static {
 		try {
-			// 用xxx.hbm.xml形式配置实体映射
+			// 鐢▁xx.hbm.xml褰㈠紡閰嶇疆瀹炰綋鏄犲皠
 			// sessionFactory = new
 			// Configuration().configure().buildSessionFactory();
-			// 用Annotation形式配置实体映射
+			// 鐢ˋnnotation褰㈠紡閰嶇疆瀹炰綋鏄犲皠
 			// sessionFactory = new AnnotationConfiguration().configure()
 			// .buildSessionFactory();
 			Configuration configuration = new Configuration();
