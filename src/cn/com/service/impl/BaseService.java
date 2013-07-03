@@ -5,17 +5,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.com.dao.IBaseDao;
 import cn.com.dao.impl.BaseDao;
 import cn.com.service.IBaseService;
 
 public class BaseService<T extends Serializable> implements IBaseService<T> {
 
-	// public BaseDao<T> getBaseDao() {
-	// return baseDao;
-	// }
+	public BaseDao<T> getBaseDao() {
+		return new BaseDao<T>();
+	}
 
 	@Autowired
-	private BaseDao<T> baseDao;
+	private IBaseDao<T> baseDao;
 
 	// @Override
 	// public void save(T t) {
@@ -36,6 +37,10 @@ public class BaseService<T extends Serializable> implements IBaseService<T> {
 	// public T findById(Class<T> clazz, int id) {
 	// return baseDao.findById(clazz, id);
 	// }
+	public T queryById(Class<T> clazz, long id) {
+		List<T> tmp = baseDao.createQuery(clazz, " where id=" + id);
+		return (null == tmp || 0 == tmp.size()) ? null : tmp.get(0);
+	}
 
 	public List<T> findAll(Class<T> clazz) {
 		return baseDao.findAll(clazz);

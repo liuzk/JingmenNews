@@ -5,6 +5,8 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +21,8 @@ public class JsonUtil {
 				|| obj instanceof Float || obj instanceof Boolean
 				|| obj instanceof Short || obj instanceof Double
 				|| obj instanceof Long || obj instanceof BigDecimal
-				|| obj instanceof BigInteger || obj instanceof Byte) {
+				|| obj instanceof BigInteger || obj instanceof Byte
+				|| obj instanceof Date || obj instanceof Timestamp) {
 			json.append("\"").append(string2json(obj.toString())).append("\"");
 		} else if (obj instanceof Object[]) {
 			json.append(array2json((Object[]) obj));

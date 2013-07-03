@@ -12,8 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import cn.com.dao.IBaseDao;
 
-@Repository("baseDao")
+@Repository
 public class BaseDao<T extends Serializable> implements IBaseDao<T> {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -21,7 +22,6 @@ public class BaseDao<T extends Serializable> implements IBaseDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> findAll(Class<T> clazz) {
 		Session session = getSession();
@@ -36,10 +36,7 @@ public class BaseDao<T extends Serializable> implements IBaseDao<T> {
 			e.printStackTrace();
 			if (session != null)
 				session.getTransaction().rollback();
-		} finally {
-			// spring管理hibernate的sessionfactory事务
-			// if (session != null)
-			// session.close();
+			return null;
 		}
 		return list;
 	}
@@ -55,6 +52,7 @@ public class BaseDao<T extends Serializable> implements IBaseDao<T> {
 			e.printStackTrace();
 			if (session != null)
 				session.getTransaction().rollback();
+			return null;
 		}
 		return list;
 	}
@@ -72,32 +70,25 @@ public class BaseDao<T extends Serializable> implements IBaseDao<T> {
 			e.printStackTrace();
 			if (session != null)
 				session.getTransaction().rollback();
+			return null;
 		}
 		return list;
 	}
 
-	@Override
-	public void save(T t) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update(T t) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(T t) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public T get(Serializable id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	// public void save(T t) {
+	//
+	// }
+	//
+	// public void update(T t) {
+	//
+	// }
+	//
+	// public void delete(T t) {
+	//
+	// }
+	//
+	// public T get(Serializable id) {
+	// return null;
+	// }
 
 }

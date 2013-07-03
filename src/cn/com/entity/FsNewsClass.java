@@ -2,6 +2,8 @@ package cn.com.entity;
 
 // Generated 2013-6-23 21:31:27 by Hibernate Tools 4.0.0
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +15,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "FS_NewsClass", schema = "dbo", catalog = "jmrb", uniqueConstraints = @UniqueConstraint(columnNames = "ClassID"))
-public class FsNewsClass implements java.io.Serializable {
+public class FsNewsClass implements Serializable {
 
 	/**
 	 * 

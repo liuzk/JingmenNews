@@ -2,6 +2,7 @@ package cn.com.entity;
 
 // Generated 2013-6-23 21:31:27 by Hibernate Tools 4.0.0
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "FS_News_1", schema = "dbo", catalog = "jmrb")
-public class FsNews1 implements java.io.Serializable {
+public class FsNews1 implements Serializable {
 
 	/**
 	 * 

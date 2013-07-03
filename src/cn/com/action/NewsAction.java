@@ -31,7 +31,7 @@ public class NewsAction extends BaseAction {
 	// @Resource(name = "fsNewsService")
 	// private FsNewsService fsNewsService;
 
-	// FS_NEWS的视图
+	// FS_NEWS的视图FS_NEWS_1
 	@Resource(name = "fsNews1Service")
 	private FsNews1Service fsNews1Service;
 
@@ -42,34 +42,22 @@ public class NewsAction extends BaseAction {
 	private SimpleNewsService simpleNewsService;
 
 	private String newsId; // 新闻id
+	private long id;
 
 	private String classEname; // 栏目英文名
-	private Integer num; // 取前num条数据
+	private int num; // 取前num条数据
 
-	private Integer pageNum; // 分页所在页
-	private Integer pageSize; // 分页大小
+	private int pageNum; // 分页所在页
+	private int pageSize; // 分页大小
 
-	/**
-	 * 通过参数获取classEname的前num条数据 必要的参数classEname，num
-	 * 
-	 * @return json
-	 * @throws Exception
-	 */
-	@Action
-	public String getTopByParam() throws Exception {
-		List<FsNews1> list = new ArrayList<FsNews1>();
-		if (null == classEname || "".equals(classEname) || null == num
-				|| num < 1)
-			return null;
-		list = fsNews1Service.createQuery(FsNews1.class,
-				"where audittf=1 and ClassEname='" + classEname
-						+ "' and rownum<=" + num + " order by adddate desc");
+	@Action("getNews")
+	public String getNews1() throws Exception {
+		FsNews1 fsNews1 = fsNews1Service.queryById(FsNews1.class, id);
 		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = null;
 		try {
 			pw = response.getWriter();
-			System.out.println(JsonUtil.list2json(list));
-			pw.write(JsonUtil.list2json(list));
+			pw.write(JsonUtil.object2json(fsNews1));
 		} catch (IOException e) {
 			return null;
 		}
@@ -84,18 +72,16 @@ public class NewsAction extends BaseAction {
 	 * @return
 	 * @throws Exception
 	 */
-	@Action
+	@Action("getPageResult")
 	public String getPageResult() throws Exception {
 		List<SimpleNews> list = new ArrayList<SimpleNews>();
 		list = simpleNewsService.createQuery(SimpleNews.class,
 				"where audittf=1 and ClassEname='" + classEname
-						+ "' and rownum<=" + num + " order by adddate desc",
-				pageNum, pageSize);
+						+ "' order by adddate desc", pageNum, pageSize);
 		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = null;
 		try {
 			pw = response.getWriter();
-			System.out.println(JsonUtil.list2json(list));
 			pw.write(JsonUtil.list2json(list));
 		} catch (IOException e) {
 			return null;
@@ -105,15 +91,43 @@ public class NewsAction extends BaseAction {
 		return null;
 	}
 
-	@Action
+	/**
+	 * 参数 :pageNum,pageSize=30,classEname 功能simplenews的分页查询
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	@Action("getPageResult30")
+	public String getPageResult30() throws Exception {
+		List<SimpleNews> list = new ArrayList<SimpleNews>();
+		list = simpleNewsService.createQuery(SimpleNews.class,
+				"where audittf=1 and ClassEname='" + classEname
+						+ "' order by adddate desc", pageNum, 30);
+		response.setCharacterEncoding("utf-8");
+		PrintWriter pw = null;
+		try {
+			pw = response.getWriter();
+			pw.write(JsonUtil.list2json(list));
+		} catch (IOException e) {
+			return null;
+		}
+		pw.flush();
+		pw.close();
+		return null;
+	}
+
+	@Action("getNews1OneNewsTop30")
 	public String getNews1OneNewsTop30() throws Exception {
-		List<FsNews1> list = new ArrayList<FsNews1>();
-		list = fsNews1Service.getOneNewsTop30(FsNews1.class);
+		List<SimpleNews> list = new ArrayList<SimpleNews>();
+		list = simpleNewsService
+				.createQuery(
+						SimpleNews.class,
+						"where ParentId='07112109321626936' and audittf=1 order by addDate",
+						0, 30);
 		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = null;
 		try {
 			pw = response.getWriter();
-			System.out.println(JsonUtil.list2json(list));
 			pw.write(JsonUtil.list2json(list));
 		} catch (IOException e) {
 			return null;
@@ -123,33 +137,14 @@ public class NewsAction extends BaseAction {
 		return null;
 	}
 
-	@Action
-	public String getNews() throws Exception {
-		List<FsNews1> list = new ArrayList<FsNews1>();
-		list = fsNews1Service.findAll(FsNews1.class);
-		response.setCharacterEncoding("utf-8");
-		PrintWriter pw = null;
-		try {
-			pw = response.getWriter();
-			System.out.println(JsonUtil.list2json(list));
-			pw.write(JsonUtil.list2json(list));
-		} catch (IOException e) {
-			return null;
-		}
-		pw.flush();
-		pw.close();
-		return null;
-	}
-
-	@Action
-	public String getNewsClass() throws Exception {
+	@Action("getAllNewsClass")
+	public String getAllNewsClass() throws Exception {
 		List<FsNewsClass> list = new ArrayList<FsNewsClass>();
 		list = fsNewsClassService.findAll(FsNewsClass.class);
 		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = null;
 		try {
 			pw = response.getWriter();
-			System.out.println(JsonUtil.list2json(list));
 			pw.write(JsonUtil.list2json(list));
 		} catch (IOException e) {
 			return null;
@@ -175,28 +170,44 @@ public class NewsAction extends BaseAction {
 		this.classEname = classEname;
 	}
 
-	public Integer getNum() {
+	public int getNum() {
 		return num;
 	}
 
-	public void setNum(Integer num) {
+	public void setNum(int num) {
 		this.num = num;
 	}
 
-	public Integer getPageNum() {
+	public int getPageNum() {
 		return pageNum;
 	}
 
-	public void setPageNum(Integer pageNum) {
+	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
 	}
 
-	public Integer getPageSize() {
+	public int getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(Integer pageSize) {
+	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public String getClassEname() {
+		return classEname;
+	}
+
+	public void setClassEname(String classEname) {
+		this.classEname = classEname;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

@@ -6,5 +6,4 @@ import cn.com.entity.SimpleNews;
 
 @Service
 public class SimpleNewsService extends BaseService<SimpleNews> {
-
 }

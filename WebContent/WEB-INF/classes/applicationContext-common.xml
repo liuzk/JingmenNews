@@ -9,13 +9,27 @@
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<!-- 配置DBCP数据源 -->
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+<!-- 	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/> -->
+<!-- 	<property name="url" -->
+<!-- 	value="jdbc:sqlserver://localhost:50470;databaseName=jmrb" /> -->
+<!-- 	<property name="username" value="sa" /> -->
+<!-- 	<property name="password" value="root" /> -->
+<!-- 	</bean> -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url"
-			value="jdbc:sqlserver://localhost:50470;databaseName=jmrb" />
-		<property name="username" value="sa" />
-		<property name="password" value="root" />
+	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	<property name="url"
+	value="jdbc:sqlserver://192.168.0.2:14330;databaseName=jmrb" />
+	<property name="username" value="jmapk" />
+	<property name="password" value="jm,./apk" />
 	</bean>
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+<!-- 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" /> -->
+<!-- 		<property name="url" -->
+<!-- 			value="jdbc:jtds:sqlserver://192.168.0.2:14330;databaseName=jmrb" /> -->
+<!-- 		<property name="username" value="jmapk" /> -->
+<!-- 		<property name="password" value="jm,./apk" /> -->
+<!-- 	</bean> -->
 
 	<!-- 配置SessionFactory,由Spring容器来管理Hibernate -->
 	<bean id="sessionFactory"

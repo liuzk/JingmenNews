@@ -1,13 +1,18 @@
 package cn.com.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-public class SimpleNews implements java.io.Serializable {
+@Entity
+@Table(name = "FS_News_1", schema = "dbo", catalog = "jmrb")
+public class SimpleNews implements Serializable {
 
 	/**
 	 * 简易News，用于最外层列表用
