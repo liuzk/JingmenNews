@@ -26,6 +26,24 @@ public class SimpleNews implements Serializable {
 	private Date addDate;
 	private String picPath;
 
+	public SimpleNews() {
+	}
+
+	public SimpleNews(long id) {
+		this.id = id;
+	}
+
+	public SimpleNews(long id, String newsId, String title, String subTitle,
+			String content, Date addDate, String picPath) {
+		this.id = id;
+		this.newsId = newsId;
+		this.title = title;
+		this.subTitle = subTitle;
+		this.content = content;
+		this.addDate = addDate;
+		this.picPath = picPath;
+	}
+
 	@Id
 	@Column(name = "ID", unique = true, nullable = false)
 	public long getId() {

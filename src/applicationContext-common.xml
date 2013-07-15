@@ -16,62 +16,21 @@
 <!-- 	<property name="username" value="sa" /> -->
 <!-- 	<property name="password" value="root" /> -->
 <!-- 	</bean> -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-	<property name="url"
-	value="jdbc:sqlserver://192.168.0.2:14330;databaseName=jmrb" />
-	<property name="username" value="jmapk" />
-	<property name="password" value="jm,./apk" />
-	</bean>
 <!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
-<!-- 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" /> -->
+<!-- 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" /> -->
 <!-- 		<property name="url" -->
-<!-- 			value="jdbc:jtds:sqlserver://192.168.0.2:14330;databaseName=jmrb" /> -->
+<!-- 			value="jdbc:sqlserver://192.168.0.2:14330;databaseName=jmrb;SelectMethod=cursor" /> -->
+<!-- 		<property name="username" value="jmapk" /> -->
+<!-- 		<property name="password" value="jm,./apk" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+<!-- 		<property name="driverClassName" value="com.microsoft.jdbc.sqlserver.SQLServerDriver" /> -->
+<!-- 		<property name="url" -->
+<!-- 			value="jdbc:sqlserver://192.168.0.2:14330;databaseName=jmrb;SelectMethod=cursor" /> -->
 <!-- 		<property name="username" value="jmapk" /> -->
 <!-- 		<property name="password" value="jm,./apk" /> -->
 <!-- 	</bean> -->
 
-	<!-- 配置SessionFactory,由Spring容器来管理Hibernate -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<!-- 配置自动扫描包下的实体，也可使用annotatedClasses属性进行单个实体配置 -->
-		<property name="packagesToScan" value="cn.com.entity"></property>
-		<!-- 配置Hibernate属性 -->
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
-				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
-				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.query.substitutions">true 1, false 0, yes 'Y', no 'N'</prop>
-			</props>
-		</property>
-		<!-- <property name="configLocation"> <value>classpath:hibernate.cfg.xml</value> 
-			</property> -->
-	</bean>
-
-	<!-- 配置事务管理器 -->
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<!-- 加载事务管理器 <tx:annotation-driven transaction-manager="transactionManager"/> -->
-	<!-- 配置事务的传播特性 -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="*" read-only="true" />
-		</tx:attributes>
-	</tx:advice>
-
-	<!-- 配置参与事务的类或方法 -->
-	<aop:config>
-		<aop:pointcut id="allServiceMethod" expression="execution(* cn.com.dao.*.*.*(..))" />
-		<aop:advisor pointcut-ref="allServiceMethod" advice-ref="txAdvice" />
-	</aop:config>
 
 	<!-- 使Spring关注Annotation -->
 	<context:annotation-config />

@@ -27,6 +27,22 @@ public class FsNewsClass implements Serializable {
 	private String classCname;
 	private String parentId;
 
+	public FsNewsClass() {
+	}
+
+	public FsNewsClass(long id) {
+		this.id = id;
+	}
+
+	public FsNewsClass(long id, String classId, String classEname,
+			String classCname, String parentId) {
+		this.id = id;
+		this.classId = classId;
+		this.classEname = classEname;
+		this.classCname = classCname;
+		this.parentId = parentId;
+	}
+
 	@Id
 	@Column(name = "ID", unique = true, nullable = false)
 	public long getId() {

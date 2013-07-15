@@ -78,6 +78,14 @@ public class NewsAction extends BaseAction {
 		list = simpleNewsService.createQuery(SimpleNews.class,
 				"where audittf=1 and ClassEname='" + classEname
 						+ "' order by adddate desc", pageNum, pageSize);
+		if (null != list)
+			for (SimpleNews simpleNews : list) {
+				if (null != simpleNews.getPicPath())
+					simpleNews.setPicPath("http://www.jmnews.cn"
+							+ simpleNews.getPicPath());
+				simpleNews.setContent(simpleNews.getContent().replace("src=\"",
+						"src=\"http://www.jmnews.cn"));
+			}
 		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = null;
 		try {
@@ -104,6 +112,13 @@ public class NewsAction extends BaseAction {
 				"where audittf=1 and ClassEname='" + classEname
 						+ "' order by adddate desc", pageNum, 30);
 		response.setCharacterEncoding("utf-8");
+		if (null != list)
+			for (SimpleNews simpleNews : list) {
+				simpleNews.setPicPath("http://www.jmnews.cn"
+						+ simpleNews.getPicPath());
+				simpleNews.setContent(simpleNews.getContent().replace("src=\"",
+						"src=\"http://www.jmnews.cn"));
+			}
 		PrintWriter pw = null;
 		try {
 			pw = response.getWriter();
@@ -124,6 +139,13 @@ public class NewsAction extends BaseAction {
 						SimpleNews.class,
 						"where ParentId='07112109321626936' and audittf=1 order by addDate",
 						0, 30);
+		if (null != list)
+			for (SimpleNews simpleNews : list) {
+				simpleNews.setPicPath("http://www.jmnews.cn"
+						+ simpleNews.getPicPath());
+				simpleNews.setContent(simpleNews.getContent().replace("src=\"",
+						"src=\"http://www.jmnews.cn"));
+			}
 		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = null;
 		try {

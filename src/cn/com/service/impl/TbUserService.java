@@ -2,9 +2,9 @@ package cn.com.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import cn.com.entity.User;
+import cn.com.entity.TbUser;
 
 @Service
-public class UserService extends BaseService<User> {
+public class TbUserService extends BaseService<TbUser> {
 
 }

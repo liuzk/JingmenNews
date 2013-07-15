@@ -1,13 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="hibernate.connection.password">root</property>
-        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:50470;databaseName=jmrb</property>
-        <property name="hibernate.connection.username">sa</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
-    </session-factory>
+	<session-factory>
+
+		<property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.connection.url">jdbc:jtds:sqlserver://192.168.0.99:14330/jmrb</property>
+		<property name="hibernate.connection.username">sa</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+<!-- 		<property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property> -->
+<!-- 		<property name="hibernate.connection.password">jm,./apk</property> -->
+<!-- 		<property name="hibernate.connection.url">jdbc:jtds:sqlserver://192.168.0.2:14330/jmrb</property> -->
+<!-- 		<property name="hibernate.connection.username">jmapk</property> -->
+<!-- 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property> -->
+		<!-- 将Session扔到线程里去处理，Enable Hibernate's automatic session context management -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- 在控制台打印SQL语句 -->
+		<property name="show_sql">true</property>
+
+		<!-- 自动把实体类与属性映射成数据库中的表与列 -->
+
+		<!-- <mapping resource="cn/com/entity/User.hbm.xml"/> -->
+		<!-- 在Hibernate中注册User实体类,区别于上面注释掉的resource写法 -->
+		<mapping class="cn.com.entity.SimpleNews" />
+		<mapping class="cn.com.entity.FsNews1" />
+		<mapping class="cn.com.entity.FsNews" />
+		<mapping class="cn.com.entity.FsNewsClass" />
+		<mapping class="cn.com.entity.TbUser" />
+		
+
+	</session-factory>
 </hibernate-configuration>

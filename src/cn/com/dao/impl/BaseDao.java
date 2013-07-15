@@ -6,20 +6,16 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import cn.com.dao.IBaseDao;
+import cn.com.test.HibernateUtil;
 
 @Repository
 public class BaseDao<T extends Serializable> implements IBaseDao<T> {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-
 	public Session getSession() {
-		return sessionFactory.getCurrentSession();
+		return HibernateUtil.getSessionFactory().getCurrentSession();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -28,10 +24,10 @@ public class BaseDao<T extends Serializable> implements IBaseDao<T> {
 		List<T> list = new ArrayList<T>();
 		try {
 			// 开启事务
-			// session.beginTransaction();
+			session.beginTransaction();
 			list = session.createQuery(" from " + clazz.getName()).list();
 			// 提交事务
-			// session.getTransaction().commit();
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			if (session != null)
@@ -46,8 +42,10 @@ public class BaseDao<T extends Serializable> implements IBaseDao<T> {
 		Session session = getSession();
 		List<T> list = new ArrayList<T>();
 		try {
+			session.beginTransaction();
 			list = session.createQuery(" from " + clazz.getName() + " " + hql)
 					.list();
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			if (session != null)
@@ -63,9 +61,11 @@ public class BaseDao<T extends Serializable> implements IBaseDao<T> {
 		Session session = getSession();
 		List<T> list = new ArrayList<T>();
 		try {
+			session.beginTransaction();
 			list = session.createQuery(" from " + clazz.getName() + " " + hql)
 					.setFirstResult(pageNum * pageSize).setMaxResults(pageSize)
 					.list();
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			if (session != null)
